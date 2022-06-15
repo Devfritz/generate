@@ -12,24 +12,24 @@ class Generate extends StatefulWidget {
 class _GenerateState extends State<Generate> {
   int min = 0;
   int max = 0;
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   build(BuildContext context) {
+    print(min);
     return Scaffold(
       appBar: AppBar(
         title: Text('Generate'),
       ),
       body: FormRangeValue(
-        formKey: _formKey,
-        minValue: (value) => value = min,
-        maxValue: (value) => value = max,
-      ),
+          formKey: formKey,
+          minValue: (value) => min = value,
+          maxValue: (value) => max = value),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward),
         onPressed: () {
-          if (_formKey.currentState?.validate() == true) {
-            _formKey.currentState?.save();
+          if (formKey.currentState?.validate() == true) {
+            formKey.currentState?.save();
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (context) => Randomize(min: min, max: max)),

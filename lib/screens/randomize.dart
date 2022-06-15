@@ -17,7 +17,7 @@ class Randomize extends StatefulWidget {
 
 class _RandomizeState extends State<Randomize> {
   int? _generateNum;
-  final randomGenerator = Random();
+  final Random randomGenerator = Random();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +30,15 @@ class _RandomizeState extends State<Randomize> {
         style: TextStyle(fontSize: 30),
       )),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            setState(() {
-              _generateNum = widget.min +
-                  randomGenerator.nextInt(widget.max + 1 - widget.min);
-              print(widget.min);
-              print(_generateNum);
-            });
-          },
-          label: Text('Generate')),
+        label: Text('Generate'),
+        onPressed: () {
+          setState(() {
+            _generateNum = widget.min +
+                randomGenerator.nextInt(widget.max + 1 - widget.min);
+            // _generateNum = randomGenerator.nextInt(widget.max);
+          });
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

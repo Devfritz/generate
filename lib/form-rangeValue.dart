@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 typedef IntValueSetter = void Function(int value);
 
 class FormRangeValue extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-  final IntValueSetter minValue;
-  final IntValueSetter maxValue;
-
   const FormRangeValue(
       {Key? key,
       required this.formKey,
       required this.minValue,
       required this.maxValue})
       : super(key: key);
+  final GlobalKey<FormState> formKey;
+  final IntValueSetter minValue;
+  final IntValueSetter maxValue;
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +41,12 @@ class InputUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(
-          border: const OutlineInputBorder(), labelText: labelText),
+      decoration:
+          InputDecoration(border: OutlineInputBorder(), labelText: labelText),
       keyboardType: const TextInputType.numberWithOptions(
         decimal: false,
         signed: true,
       ),
-      onSaved: (val) => onChange(int.parse(val ?? '')),
       validator: (val) {
         if (val == null || int.tryParse(val) == null) {
           return 'A number is required';
@@ -56,6 +54,7 @@ class InputUser extends StatelessWidget {
           return null;
         }
       },
+      onSaved: (val) => onChange(int.parse(val ?? '')),
     );
   }
 }
